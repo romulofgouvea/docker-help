@@ -1,2 +1,1 @@
-# docker
-Criando dockerfiles uteis
+#Brincando com Docker
