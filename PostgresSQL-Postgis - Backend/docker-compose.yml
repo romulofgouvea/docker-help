@@ -1,7 +1,5 @@
 # docker-compose build
 version: '2.1'
-volumes:
-  postgis-data:
 
 services:
   db:
@@ -17,22 +15,24 @@ services:
       # Add extensions you need to be enabled by default in the DB. Default are the three specified below
       - POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology
     ports:
-      - 5434:5432
+      - 5442:5432
     restart: on-failure
-    healthcheck:
-      test: "exit 0"
+    networks:
+      - postgres-backend
   backend:
     image: oqueprecisabackend
     container_name: oqueprecisabackend
-    build:
-      context: .
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "8080:80"
+    restart: on-failure
     networks:
-      - default
+      - postgres-backend
 
 networks:
   postgres-backend:
     driver: bridge
+
+volumes:
+  postgis-data:
