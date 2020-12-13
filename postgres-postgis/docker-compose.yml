@@ -21,17 +21,6 @@ services:
     restart: on-failure
     healthcheck:
       test: "exit 0"
-  backend:
-    image: oqueprecisabackend
-    container_name: oqueprecisabackend
-    build:
-      context: .
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "8080:80"
-    networks:
-      - default
 
 networks:
   postgres-backend:
