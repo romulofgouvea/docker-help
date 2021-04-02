@@ -26,8 +26,8 @@ exit
 ### Passo 4 (Caso queira restaurar um dump através do container)
 
 ```bash
-docker cp C:/users/nome/Downloads/siout_2020-07-18.backup postgis:/usr/local
+docker cp C:/users/nome/Downloads/dump.backup postgis:/usr/local
 docker exec -it postgis /bin/bash
-pg_restore -U postgres -d siout_master ./siout_2020-07-18.backup
+pg_restore -U postgres -d siout_master ./dump.backup
 exit
 ```
